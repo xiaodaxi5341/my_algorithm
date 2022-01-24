@@ -14,7 +14,8 @@ public class MergeSortDemo {
             int[] arr1 = generateRandomArray(maxSize, maxValue);
             int[] arr2 = copyArray(arr1);
             int[] originArr = copyArray(arr1);
-            RandomQuickSortDemo.quickSort(arr1);
+            HeapSortDemo.BigHeap heap = new HeapSortDemo.BigHeap(arr1.length);
+            heap.heapSort(arr1);
             Arrays.sort(arr2);
             if (!isEqual(arr1, arr2)) {
                 System.out.println("出错了！");

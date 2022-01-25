@@ -8,4 +8,16 @@ public class CommonUtils {
         toSortArr[right] = temp;
     }
 
+
+    public static boolean equals(Object obj1,Object object2){
+        if (obj1 == object2){
+            return true;
+        }
+
+        try {
+            return obj1.equals(object2);
+        }catch (NullPointerException e){
+            return false;
+        }
+    }
 }

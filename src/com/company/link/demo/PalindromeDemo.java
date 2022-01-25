@@ -5,7 +5,7 @@ import com.company.link.base.Node;
 import com.company.util.CommonUtils;
 
 /**
- * 链表回文数
+ * 链表回文数 --- 劣質版本
  */
 public class PalindromeDemo {
 

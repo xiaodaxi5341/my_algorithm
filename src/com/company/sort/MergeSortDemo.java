@@ -12,7 +12,7 @@ public class MergeSortDemo {
         System.out.println("测试开始");
         for (int i = 0; i < testTime; i++) {
             int[] arr1 = generateRandomArray(maxSize, maxValue);
-            int[] arr2 = copyArray(arr1);
+            int[] arr2 = copyArray(arr1); 
             int[] originArr = copyArray(arr1);
             HeapSortDemo.BigHeap heap = new HeapSortDemo.BigHeap(arr1.length);
             heap.heapSort(arr1);

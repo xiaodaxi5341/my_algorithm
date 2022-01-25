@@ -7,9 +7,9 @@ import static com.company.util.CommonUtils.swap;
 //堆排序是建立在完全二叉树的基础上  此处写大根堆
 public class HeapSortDemo {
 
-    public static void main(String[] a){
+    public static void main(String[] a) {
         int[] arr = new int[]{
-                21,-36, -35, -16, 4, 17, -30
+                25,36,-53,-25,66,-37,43,-19,39,-41
         };
 
         BigHeap bigHeap = new BigHeap(arr.length);
@@ -37,13 +37,22 @@ public class HeapSortDemo {
             if (arr == null || arr.length < 2) {
                 return;
             }
-            int i=0;
-            for (;i<arr.length;i++){
-                push(arr[i]);
+            cur = arr.length;
+            int i = 0;
+
+            //时间复杂度 O(logN)
+            for (i = arr.length - 1; i >= 0; i--) {
+                heapify(arr[i],i);
             }
+            i = arr.length;
+
+            //将数组变成大根堆：时间复杂度O(N)
+//            for (;i<arr.length;i++){
+//                push(arr[i]);
+//            }
 
             //得到了大根堆,将大概堆进行排序
-            while (!isEmpty()){
+            while (!isEmpty()) {
                 arr[--i] = pop();
             }
         }
@@ -94,7 +103,7 @@ public class HeapSortDemo {
                 int subRightIndex = index * 2 + 2;
                 int biggerValIndex = subRightIndex >= cur ? subLeftIndex :
                         (data[subLeftIndex] > data[subRightIndex] ? subLeftIndex : subRightIndex);
-                if (data[biggerValIndex]>data[index]){
+                if (data[biggerValIndex] > data[index]) {
                     swap(data, biggerValIndex, index);
                 }
                 index = biggerValIndex;

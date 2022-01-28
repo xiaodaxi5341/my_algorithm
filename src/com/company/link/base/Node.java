@@ -24,4 +24,11 @@ public class Node<T> {
     public void setNext(Node<T> next) {
         this.next = next;
     }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "value=" + value +
+                '}';
+    }
 }

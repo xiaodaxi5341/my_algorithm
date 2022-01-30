@@ -7,9 +7,8 @@ public class TraverseDemo {
 
     public static void main(String[] args) {
         BinaryTreeNode head = init();
-        recursiveTraversal(head);
-        System.out.println();
-        inorderTraversal(head);
+//        BreadthFirstTraversalDemo.breadthFirstTraversal(head);
+        System.out.println(BreadthFirstTraversalDemo.getTreeMaxWidth(head));
     }
 
     public static void recursiveTraversal(BinaryTreeNode head){
@@ -127,15 +126,19 @@ public class TraverseDemo {
 
         n1.left = n2;
         n1.right = n3;
-        n2.left = n4;
-        n2.right = n5;
-        n3.left = n6;
-        n3.right = n7;
+        n2.left = n11;
+        n11.left = n12;
+        n2.right = n4;
+        n3.left = n5;
+//        n3.right = n7;
+        n4.left = n6;
+        n4.right = n7;
         n5.left = n8;
-        n6.left = n9;
-        n9.left = n10;
-        n7.right = n11;
-        n6.right = n12;
+        n5.right = n9;
+//        n6.left = n9;
+//        n9.left = n10;
+//        n7.right = n11;
+//        n6.right = n12;
         return n1;
     }
 

@@ -5,9 +5,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class Graph {
+public class Graph<T> {
 
-    private Map<Integer,GraphNode> nodes;
+    private Map<T,GraphNode> nodes;
     private Set<Edge> edges;
 
     Graph(){
@@ -15,11 +15,11 @@ public class Graph {
         edges = new HashSet<>();
     }
 
-    public Map<Integer, GraphNode> getNodes() {
+    public Map<T, GraphNode> getNodes() {
         return nodes;
     }
 
-    public void setNodes(Map<Integer, GraphNode> nodes) {
+    public void setNodes(Map<T, GraphNode> nodes) {
         this.nodes = nodes;
     }
 

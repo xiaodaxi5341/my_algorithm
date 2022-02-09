@@ -11,7 +11,7 @@ import java.util.Set;
 public class Prim<T> {
 
     public Set<Edge<T>> minSpanningTree(Graph<T> graph) {
-        if (graph == null || CollectionUtils.isEmpty(graph.getNodes())) {
+        if (CollectionUtils.isEmpty(graph.getNodes())) {
             return null;
         }
 

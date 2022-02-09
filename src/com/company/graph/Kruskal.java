@@ -56,6 +56,35 @@ public class Kruskal<T> {
         map.put("D",D);
         map.put("E",E);
 
+        A.addNode(B);
+        A.addNode(C);
+        A.addNode(D);
+        A.addEdge(e1);
+        A.addEdge(e3);
+        A.addEdge(e2);
+
+        B.addNode(A);
+        B.addNode(E);
+        B.addNode(D);
+        B.addEdge(e1_);
+        B.addEdge(e5);
+        B.addEdge(e4);
+
+        C.addNode(A);
+        C.addNode(D);
+        C.addEdge(e3_);
+        C.addEdge(e6);
+
+        D.addNode(A);
+        D.addNode(B);
+        D.addNode(C);
+        D.addEdge(e2_);
+        D.addEdge(e5_);
+        D.addEdge(e6_);
+
+        E.addNode(B);
+        E.addEdge(e4_);
+
         Graph<String> graph = new Graph<>();
         graph.setEdges(edges);
         graph.setNodes(map);
@@ -63,6 +92,17 @@ public class Kruskal<T> {
         Kruskal<String> k = new Kruskal<>();
         Set<Edge<String>> min = k.minSpanningTree(graph);
         min.forEach(System.out::println);
+
+        System.out.println("----------------------------------------------------------------");
+
+        Prim<String> p = new Prim<>();
+        Set<Edge<String>> pMin = p.minSpanningTree(graph);
+        pMin.forEach(System.out::println);
+
+        System.out.println("----------------------------最短距离-------------------------------");
+        Dijkstra<String> d = new Dijkstra<>();
+        Map<GraphNode<String>, Integer> minDistanceMap = d.minDistance(A);
+        minDistanceMap.forEach((key,value)->System.out.println(key+"："+value));
 
     }
 
@@ -72,10 +112,10 @@ public class Kruskal<T> {
         }
 
         Set<Edge<T>> edges = graph.getEdges();
-        PriorityQueue<Edge<T>> priorityQueue = new PriorityQueue<Edge<T>>(new EdgeComparator());
+        PriorityQueue<Edge<T>> priorityQueue = new PriorityQueue<>(new EdgeComparator<>());
         priorityQueue.addAll(edges);
 
-        UnionSet<GraphNode<T>> unionSet = new UnionSet<GraphNode<T>>(graph.getNodes().values());
+        UnionSet<GraphNode<T>> unionSet = new UnionSet<>(graph.getNodes().values());
         Set<Edge<T>> result = new HashSet<>();
         while (!priorityQueue.isEmpty()) {
             Edge<T> poll = priorityQueue.poll();
@@ -91,11 +131,3 @@ public class Kruskal<T> {
 
 }
 
-class EdgeComparator<T> implements Comparator<Edge<T>> {
-
-    @Override
-    public int compare(Edge o1, Edge o2) {
-        return o1.getWeight() - o2.getWeight();
-    }
-
-}

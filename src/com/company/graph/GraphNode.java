@@ -12,12 +12,20 @@ public class GraphNode<T> {
     private int in;
     private int out;
     private List<GraphNode<T>> nexts;
-    private List<Edge> edges;
+    private List<Edge<T>> edges;
 
     GraphNode(T value){
         this.value = value;
         nexts = new ArrayList<>();
         edges = new ArrayList<>();
+    }
+
+    public void addNode(GraphNode<T> node){
+        nexts.add(node);
+    }
+
+    public void addEdge(Edge<T> edge){
+        edges.add(edge);
     }
 
     public T getValue() {
@@ -52,11 +60,11 @@ public class GraphNode<T> {
         this.nexts = nexts;
     }
 
-    public List<Edge> getEdges() {
+    public List<Edge<T>> getEdges() {
         return edges;
     }
 
-    public void setEdges(List<Edge> edges) {
+    public void setEdges(List<Edge<T>> edges) {
         this.edges = edges;
     }
 

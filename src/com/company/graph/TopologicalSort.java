@@ -6,6 +6,7 @@ import java.util.*;
 import java.util.function.Consumer;
 
 //拓扑排序，有向无环图结构的拓扑排序
+//例如可以计算包的加载顺序
 public class TopologicalSort {
 
     public static <T> void topologicalProcess(Graph<T> graph, Consumer<GraphNode<T>> exec){
@@ -14,11 +15,11 @@ public class TopologicalSort {
             return;
         }
 
-        Map<GraphNode,Integer> inNumMap = new HashMap<>(nodes.size());
-        Queue<GraphNode> zeroInQueue = new LinkedList<>();
+        Map<GraphNode<T>,Integer> inNumMap = new HashMap<>(nodes.size());
+        Queue<GraphNode<T>> zeroInQueue = new LinkedList<>();
 
         //找出入度为0的节点
-        for (GraphNode node : nodes.values()){
+        for (GraphNode<T> node : nodes.values()){
             inNumMap.put(node,node.getIn());
             if (node.getIn() == 0){
                 zeroInQueue.add(node);
@@ -26,11 +27,11 @@ public class TopologicalSort {
         }
 
         while (!zeroInQueue.isEmpty()){
-            GraphNode cur = zeroInQueue.poll();
+            GraphNode<T> cur = zeroInQueue.poll();
             exec.accept(cur);
-            List<GraphNode> nexts = cur.getNexts();
+            List<GraphNode<T>> nexts = cur.getNexts();
             if (!CollectionUtils.isEmpty(nexts)){
-                for (GraphNode graphNode : nexts){
+                for (GraphNode<T> graphNode : nexts){
                     int currentNodeInNum = inNumMap.get(graphNode);
                     if (currentNodeInNum-1 == 0){
                         zeroInQueue.add(graphNode);

@@ -8,8 +8,8 @@ import java.util.function.Consumer;
 //拓扑排序，有向无环图结构的拓扑排序
 public class TopologicalSort {
 
-    public static <T> void topologicalProcess(Graph<T> graph, Consumer<GraphNode> exec){
-        Map<T, GraphNode> nodes = graph.getNodes();
+    public static <T> void topologicalProcess(Graph<T> graph, Consumer<GraphNode<T>> exec){
+        Map<T, GraphNode<T>> nodes = graph.getNodes();
         if (CollectionUtils.isEmpty(nodes)){
             return;
         }

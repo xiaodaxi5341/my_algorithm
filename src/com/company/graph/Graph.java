@@ -7,27 +7,27 @@ import java.util.Set;
 
 public class Graph<T> {
 
-    private Map<T,GraphNode> nodes;
-    private Set<Edge> edges;
+    private Map<T,GraphNode<T>> nodes;
+    private Set<Edge<T>> edges;
 
-    Graph(){
+    public Graph(){
         nodes = new HashMap<>();
         edges = new HashSet<>();
     }
 
-    public Map<T, GraphNode> getNodes() {
+    public Map<T, GraphNode<T>> getNodes() {
         return nodes;
     }
 
-    public void setNodes(Map<T, GraphNode> nodes) {
+    public void setNodes(Map<T, GraphNode<T>> nodes) {
         this.nodes = nodes;
     }
 
-    public Set<Edge> getEdges() {
+    public Set<Edge<T>> getEdges() {
         return edges;
     }
 
-    public void setEdges(Set<Edge> edges) {
+    public void setEdges(Set<Edge<T>> edges) {
         this.edges = edges;
     }
 }

@@ -6,25 +6,25 @@ import java.util.List;
 /**
  * 图的点
  */
-public class GraphNode {
+public class GraphNode<T> {
 
-    private int value;
+    private T value;
     private int in;
     private int out;
-    private List<GraphNode> nexts;
+    private List<GraphNode<T>> nexts;
     private List<Edge> edges;
 
-    GraphNode(int value){
+    GraphNode(T value){
         this.value = value;
         nexts = new ArrayList<>();
         edges = new ArrayList<>();
     }
 
-    public int getValue() {
+    public T getValue() {
         return value;
     }
 
-    public void setValue(int value) {
+    public void setValue(T value) {
         this.value = value;
     }
 
@@ -44,11 +44,11 @@ public class GraphNode {
         this.out = out;
     }
 
-    public List<GraphNode> getNexts() {
+    public List<GraphNode<T>> getNexts() {
         return nexts;
     }
 
-    public void setNexts(List<GraphNode> nexts) {
+    public void setNexts(List<GraphNode<T>> nexts) {
         this.nexts = nexts;
     }
 
@@ -58,5 +58,12 @@ public class GraphNode {
 
     public void setEdges(List<Edge> edges) {
         this.edges = edges;
+    }
+
+    @Override
+    public String toString() {
+        return "GraphNode{" +
+                "value=" + value +
+                '}';
     }
 }

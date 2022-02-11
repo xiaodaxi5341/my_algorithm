@@ -6,8 +6,10 @@ public class Kmp {
 
     public static void main(String[] args) {
         String s1 = "abcdabd";
-        String s2 = "abd";
+        String s2 = "bcd";
         System.out.println(getIndexOf(s1,s2));
+        System.out.println(getIndexOf(s1,null));
+
     }
 
     /**

@@ -5,6 +5,8 @@ import com.company.util.CommonUtils;
 
 import java.util.Arrays;
 
+import static com.company.util.CommonUtils.swap;
+
 /**
  * 在一堆无序数组中选择第k小的数
  *
@@ -20,44 +22,87 @@ import java.util.Arrays;
  */
 public class BFPRT {
 
+    public static void main(String[] args) {
+        int[] a = new int[]{3,9,5,3,5,2,8,7};
+//        23355789
+//        System.out.println(Arrays.toString(partition(a,0, a.length-1, 0)));
+        System.out.println(bfprt(a,0,a.length,6-1));
+    }
+
     public static int bfprt(int[] arr,int left,int right,int k){
-        if (left == right){
-            if (left != k){
-                throw new RuntimeException();
-            }else{
+        if (left == right-1){
+//            if (left != k){
+//                throw new RuntimeException();
+//            }else{
                 return arr[left];
-            }
+//            }
         }
 
         int pivot = medianOfMedians(arr,left,right);
         //获取P值以后进行常规划分
-        partition(arr,left,right,pivot);
-        return 0;
+        int[] partition = partition(arr, left, right, pivot);
+        int result = 0;
+        if (partition[0]>k){
+            result = bfprt(arr,left,partition[0]-1,k);
+        }else if (k<=partition[1]){
+            result = arr[k];
+        }else{
+            result = bfprt(arr,partition[1]+1,right,k);
+        }
+        return result;
     }
 
-    private static void partition(int[] arr, int left, int right, int pivot) {
-        if (left == right){
-            return;
+    private static int[] partition(int[] arr, int left, int right, int pivot) {
+        int[] leftRightArr = new int[2];
+        if (left == right-1){
+            leftRightArr[0]=left;
+            leftRightArr[1]=right;
+            return leftRightArr;
         }
-        int leftRegionIndex = -1;
-        int rightRegionIndex = arr.length;
-        for (int i=left;i<right;i++){
+        int leftRegionIndex = left-1;
+        int rightRegionIndex = right;
+        int i=left;
+        while (i<rightRegionIndex){
             //和右区域外的最后一个值交换位置，右区域扩大，左区域不动，i也要不动
-            if (arr[left] > pivot){
-
+            if (arr[i] > pivot){
+                CommonUtils.swap(arr,--rightRegionIndex,i);
+            }else if (arr[i]==pivot){
+                i++;
+            }else {
+                //值小于给定的数时，当前位置与左区域外的值进行交换，左区域外扩，同时i++
+                CommonUtils.swap(arr,++leftRegionIndex,i++);
             }
         }
+        leftRightArr[0] = leftRegionIndex+1;
+        leftRightArr[1] = rightRegionIndex;
+        return leftRightArr;
     }
+
+//    public static int[] partition(int[] arr, int L, int R, int pivot) {
+//        int less = L - 1;
+//        int more = R + 1;
+//        int cur = L;
+//        while (cur < more) {
+//            if (arr[cur] < pivot) {
+//                swap(arr, ++less, cur++);
+//            } else if (arr[cur] > pivot) {
+//                swap(arr, cur, --more);
+//            } else {
+//                cur++;
+//            }
+//        }
+//        return new int[] { less + 1, more - 1 };
+//    }
 
     //找中位数p
     private static int medianOfMedians(int[] arr, int left, int right) {
         int size = (right - left) / 5+((right-left)%5==0?0:1);
         int[] midIndex = new int[size];
         for (int i=0;i<midIndex.length;i++){
-            midIndex[i] = sortAndGetMid(arr,left,right);
+            midIndex[i] = sortAndGetMid(arr,i*5,Math.min(5*(i+1),right));
         }
         //对中位数数组再做排序
-        return bfprt(midIndex,0,midIndex.length,midIndex[midIndex.length/2]);
+        return bfprt(midIndex,0,midIndex.length,midIndex.length/2);
     }
 
     private static int sortAndGetMid(int[] arr, int left, int right) {
@@ -69,7 +114,7 @@ public class BFPRT {
         for (int i=left;i<right;i++){
             for (int j = i+1;j<right;j++){
                 if (arr[i]>arr[j]){
-                    CommonUtils.swap(arr,i,j);
+                    swap(arr,i,j);
                 }
             }
         }

@@ -12,6 +12,9 @@ public class TraverseDemo {
         System.out.println();
         System.out.println(" ========================================== ");
         Morris.traversePost(head);
+        System.out.println();
+        System.out.println("<><><><><><><><><><><><><><><><><><><><><><><");
+        System.out.println(MinDeep.process(head));
     }
 
     public static void recursiveTraversal(BinaryTreeNode head){

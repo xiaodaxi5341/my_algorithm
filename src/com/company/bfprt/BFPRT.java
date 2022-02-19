@@ -25,9 +25,11 @@ public class BFPRT {
     public static void main(String[] args) {
         int[] a = new int[]{3,9,5,3,5,2,8,7};
 //        23355789
-//        System.out.println(Arrays.toString(partition(a,0, a.length-1, 0)));
-        System.out.println(bfprt(a,0,a.length,6-1));
+        insertSort(a,1, a.length-2);
+        System.out.println(Arrays.toString(a));
+//        System.out.println(bfprt(a,0,a.length,6-1));
     }
+
 
     public static int bfprt(int[] arr,int left,int right,int k){
         if (left == right-1){
@@ -111,12 +113,12 @@ public class BFPRT {
     }
 
     private static void insertSort(int[] arr, int left, int right) {
-        for (int i=left;i<right;i++){
-            for (int j = i+1;j<right;j++){
-                if (arr[i]>arr[j]){
-                    swap(arr,i,j);
-                }
-            }
+        for (int i=left+1;i<right;i++){
+            int newNumIndex = i;
+           while (newNumIndex-1>=left&&arr[newNumIndex-1]>arr[newNumIndex]){
+               swap(arr,newNumIndex-1,newNumIndex);
+               newNumIndex--;
+           }
         }
     }
 

@@ -8,7 +8,13 @@ public class TraverseDemo {
     public static void main(String[] args) {
         BinaryTreeNode head = init();
 //        BreadthFirstTraversalDemo.breadthFirstTraversal(head);
-        System.out.println(BreadthFirstTraversalDemo.getTreeMaxWidth(head));
+        recursiveTraversal(head);
+        System.out.println();
+        System.out.println(" ========================================== ");
+        Morris.traversePost(head);
+        System.out.println();
+        System.out.println("<><><><><><><><><><><><><><><><><><><><><><><");
+        System.out.println(MinDeep.process(head));
     }
 
     public static void recursiveTraversal(BinaryTreeNode head){
@@ -17,8 +23,8 @@ public class TraverseDemo {
         }
 
         recursiveTraversal(head.left);
-        System.out.print(head.value+"\t");
         recursiveTraversal(head.right);
+        System.out.print(head.value+"\t");
     }
 
     public static void in(BinaryTreeNode cur) {

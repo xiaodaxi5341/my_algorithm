@@ -9,7 +9,7 @@ public class Morris {
         }
 
         BinaryTreeNode cur = head;
-        BinaryTreeNode mostRightNode = null;
+        BinaryTreeNode mostRightNode ;
 
         while (cur != null) {
             //如果cur有左子树，则移到mostRightNode移到左树最右节点
@@ -23,7 +23,7 @@ public class Morris {
                     mostRightNode.right = cur;
                     cur = cur.left;
                     continue;
-                } else if (mostRightNode.right == cur) {
+                } else {
                     //移到最右节点以后,如果其右子树指向cur，则cur右移，之后最右节点的右指针指挥null
                     mostRightNode.right = null;
                 }
@@ -44,7 +44,7 @@ public class Morris {
         }
 
         BinaryTreeNode cur = head;
-        BinaryTreeNode mostRightNode = null;
+        BinaryTreeNode mostRightNode ;
 
         while (cur != null) {
             mostRightNode = cur.left;
@@ -57,7 +57,7 @@ public class Morris {
                     mostRightNode.right = cur;
                     cur = cur.left;
                     continue;
-                } else if (mostRightNode.right == cur) {
+                } else {
                     mostRightNode.right = null;
                 }
 
@@ -79,7 +79,7 @@ public class Morris {
         }
 
         BinaryTreeNode cur = head;
-        BinaryTreeNode mostRightNode = null;
+        BinaryTreeNode mostRightNode ;
 
         while (cur != null) {
             mostRightNode = cur.left;
@@ -91,7 +91,7 @@ public class Morris {
                     mostRightNode.right = cur;
                     cur = cur.left;
                     continue;
-                } else if (mostRightNode.right == cur) {
+                } else {
                     mostRightNode.right = null;
                 }
 
@@ -112,7 +112,7 @@ public class Morris {
         }
 
         BinaryTreeNode cur = head;
-        BinaryTreeNode mostRightNode = null;
+        BinaryTreeNode mostRightNode ;
 
         while (cur != null) {
             mostRightNode = cur.left;
@@ -124,7 +124,7 @@ public class Morris {
                     mostRightNode.right = cur;
                     cur = cur.left;
                     continue;
-                } else if (mostRightNode.right == cur) {
+                } else {
                     //打印其左子树的右边界
                     mostRightNode.right = null;
                     printRightEdge(cur);
@@ -183,23 +183,16 @@ public class Morris {
     }
 
     public static BinaryTreeNode reverseRight(BinaryTreeNode head){
-        if (head == null || head.right == null){
-            return head;
+        BinaryTreeNode pre = null;
+        BinaryTreeNode next ;
+        while (head!=null){
+            next = head.right;
+            head.right = pre;
+            pre = head;
+            head = next;
         }
 
-        BinaryTreeNode node = head;
-        BinaryTreeNode sonNode = head.right;
-        BinaryTreeNode temp = head.right.right;
-        node.right = null;
-        while(temp!=null){
-            sonNode.right = node;
-            node = sonNode;
-            sonNode = temp;
-            temp = temp.right;
-        }
-
-        sonNode.right = node;
-        return sonNode;
+        return pre;
     }
 
 }

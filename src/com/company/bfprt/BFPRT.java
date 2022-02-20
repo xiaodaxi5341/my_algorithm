@@ -1,6 +1,5 @@
 package com.company.bfprt;
 
-import com.company.sort.MergeSortDemo;
 import com.company.util.CommonUtils;
 
 import java.util.Arrays;
@@ -43,7 +42,7 @@ public class BFPRT {
         int pivot = medianOfMedians(arr,left,right);
         //获取P值以后进行常规划分
         int[] partition = partition(arr, left, right, pivot);
-        int result = 0;
+        int result;
         if (partition[0]>k){
             result = bfprt(arr,left,partition[0]-1,k);
         }else if (k<=partition[1]){

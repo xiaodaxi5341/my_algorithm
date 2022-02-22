@@ -7,6 +7,7 @@ import java.util.Arrays;
 /**
  * @program: my_algorithm
  * @description 插入排序：保证0-i范围有序，第i+1个数添加进去后，进行调整从而保证0-(i+1)上有序
+ * 时间复杂度：o(n²)
  * @author: 34371
  * @create: 2022-02-22 12:58
  **/

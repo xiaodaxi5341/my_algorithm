@@ -6,25 +6,25 @@ import java.util.Arrays;
 public class MergeSortDemo {
 
     public static void main(String[] args) {
-        int testTime = 500000;
-        int maxSize = 100;
-        int maxValue = 100;
-        System.out.println("测试开始");
-        for (int i = 0; i < testTime; i++) {
-            int[] arr1 = generateRandomArray(maxSize, maxValue);
-            int[] arr2 = copyArray(arr1); 
-            int[] originArr = copyArray(arr1);
-            HeapSortDemo.BigHeap heap = new HeapSortDemo.BigHeap(arr1.length);
-            heap.heapSort(arr1);
-            Arrays.sort(arr2);
-            if (!isEqual(arr1, arr2)) {
-                System.out.println("出错了！");
-                printArray(arr1);
-                printArray(arr2);
-                printArray(originArr);
-                break;
-            }
-        }
+//        int testTime = 500000;
+//        int maxSize = 100;
+//        int maxValue = 100;
+//        System.out.println("测试开始");
+//        for (int i = 0; i < testTime; i++) {
+//            int[] arr1 = generateRandomArray(maxSize, maxValue);
+//            int[] arr2 = copyArray(arr1);
+//            int[] originArr = copyArray(arr1);
+//            HeapSortDemo.BigHeap heap = new HeapSortDemo.BigHeap(arr1.length);
+//            heap.heapSort(arr1);
+//            Arrays.sort(arr2);
+//            if (!isEqual(arr1, arr2)) {
+//                System.out.println("出错了！");
+//                printArray(arr1);
+//                printArray(arr2);
+//                printArray(originArr);
+//                break;
+//            }
+//        }
     }
 
     public static void printArray(int[] arr) {

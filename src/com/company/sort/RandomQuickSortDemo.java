@@ -6,60 +6,85 @@ import java.util.Arrays;
 public class RandomQuickSortDemo {
 
     public static void main(String[] args) {
-        int[] ints = MergeSortDemo.generateRandomArray(10, 100);
-//        int[] ints = {-26,30,-9,10,23,14,33,1,-37,2,64,-84,38,34,4,-1,-70,-12,-57,-75,-11,-6,-5,-26,-37,36,29,33,-7,-7,-5,65,-68,-3,-59,19,38,-56};
-        System.out.println(Arrays.toString(ints));
-        RandomQuickSortDemo demo = new RandomQuickSortDemo();
-        demo.quickSort(ints);
-        System.out.println(Arrays.toString(ints));
+        int counts = 0;
+        while (counts < 1000000) {
+            int[] ints = MergeSortDemo.generateRandomArray(10000, 10000);
+//        int[] ints = {-3, -12, 65, -58, 35, 7, -46, -12, -3, 29};
+            int[] arr = new int[ints.length];
+
+            int[] origin = new int[ints.length];
+            System.arraycopy(ints, 0, arr, 0, ints.length);
+            System.arraycopy(ints, 0, origin, 0, ints.length);
+            sort(ints);
+//            System.out.println(Arrays.toString(ints));
+            Arrays.sort(arr);
+            for (int i = 0; i < arr.length; i++) {
+                if (arr[i] != ints[i]) {
+                    System.out.println(Arrays.toString(origin));
+                    return;
+                }
+            }
+
+            counts++;
+        }
+
+        System.out.println("end");
+
     }
 
-    public static void quickSort(int[] toSortArr) {
-        if (toSortArr == null || toSortArr.length<2){
+    public static void sort(int[] arr) {
+        if (arr == null || arr.length < 2) {
             return;
         }
-        quickSort(toSortArr, 0, toSortArr.length - 1, toSortArr[toSortArr.length - 1]);
+
+        partion(arr, 0, arr.length - 1);
     }
 
-    public  static void swap(int[] toSortArr, int left, int right) {
+    private static void partion(int[] arr, int left, int right) {
+        if (left >= right) {
+            return;
+        }
+
+//        System.out.println(Arrays.toString(arr));
+//        int splitIndex = arr[random(left,right)];
+        int splitIndex = arr[right];
+        int l = left - 1;
+        int m = right + 1;
+        int i = left;
+        while (l < m && i < m) {
+            //当i位置的数小于splitIndex的时候，左区域右扩,i++
+            if (arr[i] < splitIndex) {
+                swap(arr, i++, l + 1);
+                l++;
+//                i++;
+            } else if (arr[i] == splitIndex) {
+                //当i位置的数与splitIndex相等时，i++
+                i++;
+            } else {
+                //i位置>splitIndex时，i与r前一个位置的数交换，i不动，右区域左阔
+                swap(arr, i, m - 1);
+                m--;
+            }
+        }
+
+        partion(arr, left, l);
+        partion(arr, m, right);
+    }
+
+    private static int random(int left, int right) {
+        int num;
+        do {
+            num = (int) (Math.random() * (right + 1));
+        } while (num < left);
+//        System.out.printf("left : %d, right:%d, random : %d%n",left,right,num);
+        return num;
+    }
+
+    public static void swap(int[] toSortArr, int left, int right) {
         int temp = toSortArr[left];
         toSortArr[left] = toSortArr[right];
         toSortArr[right] = temp;
     }
 
-    public  static void quickSort(int[] toSortArr, int left, int right, int num) {
-//        System.out.println(num+":  "+Arrays.toString(toSortArr));
-
-        if (left >= right) {
-            return;
-        }
-
-        int index = left;
-        int rightIndex = 0;
-        for (int i = left;i<=right-rightIndex;i++){
-            int cur = toSortArr[i];
-            if (cur <num){
-                swap(toSortArr,i,index);
-                index++;
-            }
-
-            if (cur >num){
-               swap(toSortArr,i,right-rightIndex);
-               rightIndex++;
-               i--;
-            }
-
-        }
-
-        //左边快排
-        if (index - 1>0){
-            quickSort(toSortArr,left,index-1,toSortArr[index-1]);
-        }
-        //右边快排
-        if (rightIndex>0){
-            quickSort(toSortArr,right-rightIndex,right,toSortArr[right]);
-        }
-
-    }
 
 }

@@ -9,12 +9,12 @@ public class TraverseDemo {
         BinaryTreeNode head = init();
 //        BreadthFirstTraversalDemo.breadthFirstTraversal(head);
         recursiveTraversal(head);
-        System.out.println();
-        System.out.println(" ========================================== ");
-        Morris.traversePost(head);
-        System.out.println();
-        System.out.println("<><><><><><><><><><><><><><><><><><><><><><><");
-        System.out.println(MinDeep.process(head));
+//        System.out.println();
+//        System.out.println(" ========================================== ");
+//        Morris.traversePost(head);
+//        System.out.println();
+//        System.out.println("<><><><><><><><><><><><><><><><><><><><><><><");
+//        System.out.println(MinDeep.process(head));
     }
 
     public static void recursiveTraversal(BinaryTreeNode head){
@@ -22,9 +22,9 @@ public class TraverseDemo {
             return;
         }
 
+        System.out.print(head.value+"\t");
         recursiveTraversal(head.left);
         recursiveTraversal(head.right);
-        System.out.print(head.value+"\t");
     }
 
     public static void in(BinaryTreeNode cur) {
@@ -139,7 +139,7 @@ public class TraverseDemo {
 //        n3.right = n7;
         n4.left = n6;
         n4.right = n7;
-        n5.left = n8;
+//        n5.left = n8;
         n5.right = n9;
 //        n6.left = n9;
 //        n9.left = n10;

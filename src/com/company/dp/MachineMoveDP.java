@@ -9,11 +9,11 @@ package com.company.dp;
 public class MachineMoveDP {
 
     public static void main(String[] args) {
-        System.out.println(calculateTotal(4,2,4,4));
+        System.out.println(calculateTotal(5,2,4,6));
     }
 
     public static int calculateTotal(int totalPos,int start,int aim,int limit){
-        int[][] arr = new int[totalPos+1][aim+1];
+        int[][] arr = new int[totalPos+1][limit+1];
         //初始化第一行
         for (int i=0;i<arr.length;i++){
             if (i == aim){
@@ -22,7 +22,7 @@ public class MachineMoveDP {
                 arr[i][0] = 0;
             }
         }
-        for (int i = 1;i<aim+1;i++){
+        for (int i = 1;i<limit+1;i++){
             for (int j=totalPos;j>0;j--){
                 if (j==totalPos){
                     arr[j][i] = arr[j-1][i-1];
@@ -37,9 +37,6 @@ public class MachineMoveDP {
     }
 
     private static int process(int totalPos, int cur, int limit, int[][] arr) {
-        if (arr[cur][limit]!=-1){
-            return arr[cur][limit];
-        }
 
         int result = 0;
         if (cur == 1){

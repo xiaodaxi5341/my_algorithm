@@ -22,6 +22,8 @@ public class GraphNode<T> {
 
     public void addNode(GraphNode<T> node){
         nexts.add(node);
+        out++;
+        node.in++;
     }
 
     public void addEdge(Edge<T> edge){

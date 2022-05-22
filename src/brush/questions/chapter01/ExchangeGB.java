@@ -9,8 +9,38 @@ package brush.questions.chapter01;
  **/
 public class ExchangeGB {
 
-    public static int count(char[] arr){
-        return 0;
+    public static void main(String[] args) {
+        System.out.println(count("GBGGBB".toCharArray()));
+    }
+
+    public static int count(char[] arr) {
+        if (arr == null|| arr.length == 0){
+            return 0;
+        }
+        if (arr.length == 1){
+            return 0;
+        }
+        return Math.min(process(arr,'G'),process(arr,'B'));
+    }
+
+    /**
+     * 指定字母放在左边
+     * @param arr example : GBGGBB
+     * @param letter G
+     * @return
+     */
+    public static int process(char[] arr,char letter){
+        int l = 0;
+        int index = 0;
+        int sum = 0;
+        for (;index<arr.length;index++){
+            if (arr[index] == letter){
+                sum+=index-l;
+                l++;
+            }
+        }
+
+        return sum;
     }
 
 }

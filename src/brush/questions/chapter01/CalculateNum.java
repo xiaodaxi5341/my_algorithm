@@ -19,7 +19,7 @@ public class CalculateNum {
     }
 
     public static void main(String[] args) {
-        System.out.println(calculateNum(32));
+        System.out.println(calculateNum(9));
     }
 
 }

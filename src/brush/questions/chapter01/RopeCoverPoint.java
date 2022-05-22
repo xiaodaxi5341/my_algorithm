@@ -11,6 +11,26 @@ import java.util.Arrays;
  **/
 public class RopeCoverPoint {
 
+
+    public static int myProcess(int[] arr, int k) {
+
+        int left = 0;
+        int right = 0;
+        int max = 0;
+
+        while (right < arr.length && left < arr.length) {
+            if (arr[right] - arr[left] <= k) {
+                max = Math.max(max, right - left + 1);
+                right++;
+            } else {
+                left++;
+            }
+        }
+
+        return max;
+    }
+
+
     //滑动窗口
     public static int maxPoint1(int[] arr, int L) {
 
@@ -68,10 +88,10 @@ public class RopeCoverPoint {
     }
 
     public static void main1(String[] args) {
-        int[] arr = new int[]{99, 862, 894, 922, 964};
-        int L = 865;
+        int[] arr = new int[]{295, 844};
+        int L = 0;
         System.out.println(maxPoint1(arr, L));
-        System.out.println(maxPoint2(arr, L));
+        System.out.println(myProcess(arr, L));
     }
 
     public static void main(String[] args) {
@@ -84,13 +104,14 @@ public class RopeCoverPoint {
             int[] arr = generateArray(len, max);
             int ans1 = maxPoint1(arr, L);
             int ans2 = maxPoint2(arr, L);
-            int ans3 = test(arr, L);
+            int ans3 = myProcess(arr, L);
             if (ans1 != ans2 || ans2 != ans3) {
                 System.out.println(Arrays.toString(arr));
                 System.out.println(L);
                 break;
             }
         }
+        System.out.println("success");
 
     }
 

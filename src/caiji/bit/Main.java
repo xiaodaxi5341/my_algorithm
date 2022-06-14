@@ -9,8 +9,15 @@ package caiji.bit;
 public class Main {
 
     public static void main(String[] args) {
-        A a = new B();
-        B b = new B();
+//        A a = new B();
+//        B b = new B();
+        int a = 1;
+        int b = a;
+        a = a^b;
+        b = a^b;
+        a = a^b;
+        System.out.println(a);
+        System.out.println(b);
     }
 
 }
